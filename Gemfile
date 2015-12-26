@@ -8,6 +8,7 @@ gem 'puma'
 gem 'slim-rails'
 gem 'uglifier', '>= 1.3.0'
 
-group :development do
+group :development, :test do
+  gem 'dotenv-rails'
   gem 'spring'
 end
