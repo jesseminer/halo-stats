@@ -1,7 +1,7 @@
 * {
   margin: 0;
   padding: 0;
-  color: #444444;
+  color: $text_color;
   font-family: arial, sans-serif;
 }
 
@@ -15,12 +15,16 @@ h3, h4, h5, p {
   margin-bottom: 10px;
 }
 
+img {
+  max-width: 100%;
+}
+
 .container {
-  margin: 40px;
+  margin: 50px 6%;
 }
 
 .panel {
   padding: 15px;
-  border: 1px solid #dddddd;
+  border: 1px solid $gray_light;
   border-radius: 10px;
 }
