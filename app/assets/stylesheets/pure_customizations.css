@@ -1,0 +1,10 @@
+.pure-g {
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
+.pure-g > div {
+  box-sizing: border-box;
+  padding-left: 10px;
+  padding-right: 10px;
+}

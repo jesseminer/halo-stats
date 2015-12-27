@@ -1,1 +1,18 @@
-h2 Player 1
+- arena = @player.service_records.arena.first
+- wz = @player.service_records.warzone.first
+
+.container
+  h2 = @player.gamertag
+  .pure-g
+    .pure-u-1.pure-u-sm-1-2
+      .panel
+        h3 Arena Stats
+        div #{arena.win_percentage.round(1)}% Win Percentage
+        div #{arena.kd_ratio.round(2)} Kill/Death Ratio
+        div #{arena.games_played} Games Played
+    .pure-u-1.pure-u-sm-1-2
+      .panel
+        h3 Warzone Stats
+        div #{wz.win_percentage.round(1)}% Win Percentage
+        div #{wz.kd_ratio.round(2)} Kill/Death Ratio
+        div #{wz.games_played} Games Played
