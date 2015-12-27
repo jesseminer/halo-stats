@@ -1,34 +1,15 @@
-- arena = @player.service_records.arena.first
-- wz = @player.service_records.warzone.first
-
 .container
   h1 = @player.gamertag
   .pure-g.main-stats
-    .pure-u-1.pure-u-md-1-6
+    .pure-u-1.pure-u-sm-1-4
       .panel
         img src="https://image.halocdn.com/h5/spartans/1023_0_2054002_3048_0_0?width=256&crop=Full&hash=gfX%2fPOEOfo%2f1%2bOuNOPGk0bz8ALso2ksJzJ21cEgCx9U%3d"
         h4 Spartan Rank #{@player.spartan_rank}
-    .pure-u-1.pure-u-md-5-12
+    .pure-u-1.pure-u-sm-9-24
       .panel
         h3 Arena Stats
-        .pure-g
-          .pure-u-1-3.number #{arena.win_percentage.round(1)}%
-          .pure-u-2-3.label Win Percentage
-        .pure-g
-          .pure-u-1-3.number = arena.kd_ratio.round(2)
-          .pure-u-2-3.label K/D Ratio
-        .pure-g
-          .pure-u-1-3.number = arena.games_played
-          .pure-u-2-3.label Games Played
-    .pure-u-1.pure-u-md-5-12
+        = render 'service_records/basic_stats', svc_record: @player.service_records.arena.first
+    .pure-u-1.pure-u-sm-9-24
       .panel
         h3 Warzone Stats
-        .pure-g
-          .pure-u-1-3.number #{wz.win_percentage.round(1)}%
-          .pure-u-2-3.label Win Percentage
-        .pure-g
-          .pure-u-1-3.number = wz.kd_ratio.round(2)
-          .pure-u-2-3.label K/D Ratio
-        .pure-g
-          .pure-u-1-3.number = wz.games_played
-          .pure-u-2-3.label Games Played
+        = render 'service_records/basic_stats', svc_record: @player.service_records.warzone.first

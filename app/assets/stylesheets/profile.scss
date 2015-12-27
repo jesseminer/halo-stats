@@ -1,19 +1,16 @@
 .main-stats {
-  .pure-g {
-    margin: 10px 0;
-  }
-
   .number, .label {
-    font-size: 1.5em;
     font-weight: bold;
   }
 
   .number {
     color: $blue_green;
-    text-align: right;
+    font-size: 2.5em;
   }
 
   .label {
     color: $gray_extra_light;
+    text-transform: uppercase;
+    margin-bottom: 15px;
   }
 }
