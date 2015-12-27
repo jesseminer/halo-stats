@@ -3,16 +3,28 @@
 
 .container
   h2 = @player.gamertag
-  .pure-g
+  .pure-g.main-stats
     .pure-u-1.pure-u-sm-1-2
       .panel
         h3 Arena Stats
-        div #{arena.win_percentage.round(1)}% Win Percentage
-        div #{arena.kd_ratio.round(2)} Kill/Death Ratio
-        div #{arena.games_played} Games Played
+        .pure-g
+          .pure-u-1-3.number #{arena.win_percentage.round(1)}%
+          .pure-u-2-3.label Win Percentage
+        .pure-g
+          .pure-u-1-3.number = arena.kd_ratio.round(2)
+          .pure-u-2-3.label K/D Ratio
+        .pure-g
+          .pure-u-1-3.number = arena.games_played
+          .pure-u-2-3.label Games Played
     .pure-u-1.pure-u-sm-1-2
       .panel
         h3 Warzone Stats
-        div #{wz.win_percentage.round(1)}% Win Percentage
-        div #{wz.kd_ratio.round(2)} Kill/Death Ratio
-        div #{wz.games_played} Games Played
+        .pure-g
+          .pure-u-1-3.number #{wz.win_percentage.round(1)}%
+          .pure-u-2-3.label Win Percentage
+        .pure-g
+          .pure-u-1-3.number = wz.kd_ratio.round(2)
+          .pure-u-2-3.label K/D Ratio
+        .pure-g
+          .pure-u-1-3.number = wz.games_played
+          .pure-u-2-3.label Games Played

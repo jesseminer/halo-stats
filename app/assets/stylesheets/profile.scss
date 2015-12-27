@@ -1,0 +1,19 @@
+.main-stats {
+  .pure-g {
+    margin: 10px 0;
+  }
+
+  .number, .label {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+
+  .number {
+    color: #009688;
+    text-align: right;
+  }
+
+  .label {
+    color: #cccccc;
+  }
+}

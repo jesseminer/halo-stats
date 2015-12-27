@@ -5,6 +5,7 @@ gem 'rails', '4.2.5'
 gem 'jquery-rails'
 gem 'pg'
 gem 'puma'
+gem 'sass-rails'
 gem 'slim-rails'
 gem 'uglifier', '>= 1.3.0'
 
