@@ -1,6 +1,8 @@
 class FetchPlayer
+  attr_reader :player
+
   def initialize(gamertag)
-    @player = Player.find_by('lower(gamertag) = lower(?)', gamertag) || Player.new(gamertag: gamertag)
+    @player = Player.find_by_gamertag(gamertag) || Player.new(gamertag: gamertag)
   end
 
   def update
@@ -18,7 +20,8 @@ class FetchPlayer
       assists: json['TotalAssists'],
       deaths: json['TotalDeaths'],
       games_played: json['TotalGamesCompleted'],
-      games_won: json['TotalGamesWon']
+      games_won: json['TotalGamesWon'],
+      time_played: 0
     )
   end
 end
