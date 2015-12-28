@@ -11,17 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151228073614) do
+ActiveRecord::Schema.define(version: 20151228095424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "players", force: :cascade do |t|
-    t.string   "gamertag",     null: false
-    t.integer  "spartan_rank", null: false
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.string   "gamertag",          null: false
+    t.integer  "spartan_rank",      null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.text     "spartan_image_url"
+    t.text     "emblem_url"
   end
+
+  add_index "players", ["gamertag"], name: "index_players_on_gamertag", unique: true, using: :btree
 
   create_table "service_records", force: :cascade do |t|
     t.integer  "player_id",                null: false
