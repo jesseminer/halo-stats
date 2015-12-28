@@ -20,4 +20,8 @@ module ApiClient
 
     days * 86400 + hours * 3600 + minutes * 60 + seconds
   end
+
+  def self.warzone_stats(gamertag)
+    get('stats/h5/servicerecords/warzone', players: gamertag)['Results'][0]['Result']
+  end
 end
