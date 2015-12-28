@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151227013029) do
+ActiveRecord::Schema.define(version: 20151228073614) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,19 @@ ActiveRecord::Schema.define(version: 20151227013029) do
 
   add_index "service_records", ["player_id", "game_mode"], name: "index_service_records_on_player_id_and_game_mode", unique: true, using: :btree
   add_index "service_records", ["player_id"], name: "index_service_records_on_player_id", using: :btree
+
+  create_table "weapons", force: :cascade do |t|
+    t.string   "uid",              null: false
+    t.string   "name",             null: false
+    t.string   "weapon_type",      null: false
+    t.text     "description"
+    t.text     "image_url"
+    t.boolean  "usable_by_player"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "weapons", ["uid"], name: "index_weapons_on_uid", unique: true, using: :btree
 
   add_foreign_key "service_records", "players", name: "fk_service_records_player_id"
 end
