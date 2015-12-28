@@ -7,7 +7,11 @@ class FetchPlayer
 
   def update
     json = ApiClient.arena_stats(@player.gamertag)
-    @player.update!(gamertag: json['PlayerId']['Gamertag'], spartan_rank: json['SpartanRank'])
+    @player.update!(
+      gamertag: json['PlayerId']['Gamertag'],
+      spartan_rank: json['SpartanRank'],
+      spartan_image_url: ApiClient.spartan_image(@player.gamertag)
+    )
     update_arena_svc_record(json['ArenaStats'])
 
     wz_json = ApiClient.warzone_stats(@player.gamertag)
