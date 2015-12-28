@@ -21,7 +21,7 @@ class FetchPlayer
       deaths: json['TotalDeaths'],
       games_played: json['TotalGamesCompleted'],
       games_won: json['TotalGamesWon'],
-      time_played: 0
+      time_played: ApiClient.parse_duration(json['TotalTimePlayed'])
     )
   end
 end

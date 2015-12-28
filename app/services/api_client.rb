@@ -11,4 +11,13 @@ module ApiClient
   def self.arena_stats(gamertag)
     get('stats/h5/servicerecords/arena', players: gamertag)['Results'][0]['Result']
   end
+
+  def self.parse_duration(d)
+    days = d.match(/(\d+)D/).try(:[], 1).to_i
+    hours = d.match(/(\d+)H/).try(:[], 1).to_i
+    minutes = d.match(/(\d+)M/).try(:[], 1).to_i
+    seconds = d.match(/(\d+)(\.\d+)?S/).try(:[], 1).to_i
+
+    days * 86400 + hours * 3600 + minutes * 60 + seconds
+  end
 end
