@@ -1,6 +1,6 @@
-module ApiClient
-  def self.arena_stats(gamertag)
-    get('stats/h5/servicerecords/arena', players: gamertag)['Results'][0]['Result']
+class ApiClient
+  def initialize(gamertag)
+    @gamertag = gamertag
   end
 
   def self.get(path, params = {})
@@ -24,11 +24,15 @@ module ApiClient
     Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) { |http| http.request(req) }
   end
 
-  def self.spartan_image(gamertag)
-    raw_response("profile/h5/profiles/#{gamertag}/spartan")['location']
+  def arena_stats
+    self.class.get('stats/h5/servicerecords/arena', players: @gamertag)['Results'][0]['Result']
   end
 
-  def self.warzone_stats(gamertag)
-    get('stats/h5/servicerecords/warzone', players: gamertag)['Results'][0]['Result']
+  def spartan_image
+    self.class.raw_response("profile/h5/profiles/#{ERB::Util.url_encode(@gamertag)}/spartan")['location']
+  end
+
+  def warzone_stats
+    self.class.get('stats/h5/servicerecords/warzone', players: @gamertag)['Results'][0]['Result']
   end
 end

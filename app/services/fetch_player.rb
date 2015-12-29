@@ -6,19 +6,21 @@ class FetchPlayer
   end
 
   def update
-    json = ApiClient.arena_stats(@player.gamertag)
+    json = api_client.arena_stats
     @player.update!(
       gamertag: json['PlayerId']['Gamertag'],
       spartan_rank: json['SpartanRank'],
-      spartan_image_url: ApiClient.spartan_image(@player.gamertag)
+      spartan_image_url: api_client.spartan_image
     )
     update_arena_svc_record(json['ArenaStats'])
-
-    wz_json = ApiClient.warzone_stats(@player.gamertag)
-    update_warzone_svc_record(wz_json['WarzoneStat'])
+    update_warzone_svc_record(api_client.warzone_stats['WarzoneStat'])
   end
 
   private
+
+  def api_client
+    @_api_client ||= ApiClient.new(@player.gamertag)
+  end
 
   def svc_record_fields(json)
     {
