@@ -28,6 +28,10 @@ class ApiClient
     self.class.get('stats/h5/servicerecords/arena', players: @gamertag)['Results'][0]['Result']
   end
 
+  def emblem
+    self.class.raw_response("profile/h5/profiles/#{ERB::Util.url_encode(@gamertag)}/emblem")['location']
+  end
+
   def spartan_image
     self.class.raw_response("profile/h5/profiles/#{ERB::Util.url_encode(@gamertag)}/spartan")['location']
   end

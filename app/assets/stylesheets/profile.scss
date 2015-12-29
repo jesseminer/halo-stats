@@ -1,3 +1,13 @@
+#profile-header {
+  display: flex;
+  align-items: center;
+
+  img {
+    height: 75px;
+    margin-right: 5px;
+  }
+}
+
 .main-stats {
   .number, .label {
     font-weight: bold;

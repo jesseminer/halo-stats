@@ -10,7 +10,8 @@ class FetchPlayer
     @player.update!(
       gamertag: json['PlayerId']['Gamertag'],
       spartan_rank: json['SpartanRank'],
-      spartan_image_url: api_client.spartan_image
+      spartan_image_url: api_client.spartan_image,
+      emblem_url: api_client.emblem
     )
     update_arena_svc_record(json['ArenaStats'])
     update_warzone_svc_record(api_client.warzone_stats['WarzoneStat'])
