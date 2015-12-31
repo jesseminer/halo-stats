@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151231035508) do
+ActiveRecord::Schema.define(version: 20151231062211) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,17 @@ ActiveRecord::Schema.define(version: 20151231035508) do
   end
 
   add_index "playlists", ["uid"], name: "index_playlists_on_uid", unique: true, using: :btree
+
+  create_table "seasons", force: :cascade do |t|
+    t.string   "uid",        null: false
+    t.string   "name",       null: false
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "seasons", ["uid"], name: "index_seasons_on_uid", unique: true, using: :btree
 
   create_table "service_records", force: :cascade do |t|
     t.integer  "player_id",                null: false
