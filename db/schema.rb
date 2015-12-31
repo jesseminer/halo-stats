@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151228095424) do
+ActiveRecord::Schema.define(version: 20151231035508) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "csr_tiers", force: :cascade do |t|
+    t.string   "identifier", null: false
+    t.string   "name"
+    t.text     "image_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "csr_tiers", ["identifier"], name: "index_csr_tiers_on_identifier", unique: true, using: :btree
 
   create_table "players", force: :cascade do |t|
     t.string   "gamertag",          null: false
@@ -26,6 +36,19 @@ ActiveRecord::Schema.define(version: 20151228095424) do
   end
 
   add_index "players", ["gamertag"], name: "index_players_on_gamertag", unique: true, using: :btree
+
+  create_table "playlists", force: :cascade do |t|
+    t.string   "uid",                         null: false
+    t.string   "name",                        null: false
+    t.text     "description"
+    t.integer  "game_mode",   default: 0,     null: false
+    t.boolean  "active",      default: false, null: false
+    t.boolean  "ranked",      default: false, null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "playlists", ["uid"], name: "index_playlists_on_uid", unique: true, using: :btree
 
   create_table "service_records", force: :cascade do |t|
     t.integer  "player_id",                null: false
