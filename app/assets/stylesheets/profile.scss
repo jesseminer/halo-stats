@@ -24,3 +24,18 @@
     margin-bottom: 15px;
   }
 }
+
+#profile-playlists {
+  margin-top: 25px;
+
+  .playlist-rank {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 60px;
+      margin-right: 5px;
+    }
+  }
+}

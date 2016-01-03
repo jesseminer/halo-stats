@@ -45,7 +45,7 @@ class FetchPlayer
       next if csr_attrs.blank?
 
       PlaylistRank.find_or_initialize_by(
-        player: player,
+        player: @player,
         season: Season.current,
         playlist: Playlist.find_by(uid: attrs['PlaylistId'])
       ).update!(

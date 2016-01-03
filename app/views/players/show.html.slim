@@ -14,3 +14,9 @@ h1#profile-header
     .panel
       h3 Warzone Stats
       = render 'service_records/basic_stats', svc_record: @player.service_records.warzone.first
+#profile-playlists
+  h3 Playlist Ranks (#{Season.current.name})
+  - @player.playlist_ranks.current_season.highest_first.preload(:csr_tier, :playlist).each do |pr|
+    .playlist-rank
+      img src=pr.csr_tier.image_url
+      span #{pr.playlist.name}: #{pr.csr_tier.name}
