@@ -1,0 +1,12 @@
+.search-form {
+  input[type=text] {
+    width: 16em;
+  }
+
+  input[type=submit] {
+    margin-left: 5px;
+    @media screen and (max-width: 480px) {
+      margin-bottom: 0.3em;
+    }
+  }
+}

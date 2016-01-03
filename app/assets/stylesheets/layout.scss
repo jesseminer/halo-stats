@@ -1,4 +1,7 @@
 #header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
   padding: 10px 6%;
   background-color: $green_dark;
 

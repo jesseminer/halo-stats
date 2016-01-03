@@ -1,5 +1,3 @@
-= form_tag search_players_path, class: 'pure-form pure-g' do
-  .pure-u-1.pure-u-sm-2-3
-    = text_field_tag :gamertag, nil, placeholder: 'Find a player', required: true, class: 'pure-input-1'
-  .pure-u-1.pure-u-sm-1-3
-    = submit_tag 'Search', class: 'pure-button pure-button-primary pure-input-1'
+= form_tag search_players_path, class: 'pure-form search-form' do
+  = text_field_tag :gamertag, nil, placeholder: 'Find a player', required: true
+  = submit_tag 'Search', class: 'pure-button pure-button-primary'
