@@ -15,6 +15,7 @@ class FetchPlayer
     )
     update_arena_svc_record(json['ArenaStats'])
     update_warzone_svc_record(api_client.warzone_stats['WarzoneStat'])
+    update_playlist_ranks(json['ArenaStats']['ArenaPlaylistStats'])
   end
 
   private
@@ -36,6 +37,24 @@ class FetchPlayer
 
   def update_arena_svc_record(json)
     ServiceRecord.arena.find_or_initialize_by(player: @player).update!(svc_record_fields(json))
+  end
+
+  def update_playlist_ranks(json)
+    json.each do |attrs|
+      csr_attrs = attrs['Csr']
+      next if csr_attrs.blank?
+
+      PlaylistRank.find_or_initialize_by(
+        player: player,
+        season: Season.current,
+        playlist: Playlist.find_by(uid: attrs['PlaylistId'])
+      ).update!(
+        csr_tier: CsrTier.find_by(identifier: "#{csr_attrs['DesignationId']}-#{csr_attrs['Tier']}"),
+        progress_percent: csr_attrs['PercentToNextTier'],
+        csr: csr_attrs['Csr'],
+        rank: csr_attrs['Rank']
+      )
+    end
   end
 
   def update_warzone_svc_record(json)

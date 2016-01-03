@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151231062211) do
+ActiveRecord::Schema.define(version: 20151231080606) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,22 @@ ActiveRecord::Schema.define(version: 20151231062211) do
   end
 
   add_index "players", ["gamertag"], name: "index_players_on_gamertag", unique: true, using: :btree
+
+  create_table "playlist_ranks", force: :cascade do |t|
+    t.integer  "player_id",        null: false
+    t.integer  "season_id",        null: false
+    t.integer  "playlist_id",      null: false
+    t.integer  "csr_tier_id",      null: false
+    t.integer  "progress_percent"
+    t.integer  "csr"
+    t.integer  "rank"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "playlist_ranks", ["player_id", "season_id", "playlist_id"], name: "index_playlist_ranks_on_player_id_and_season_id_and_playlist_id", unique: true, using: :btree
+  add_index "playlist_ranks", ["player_id"], name: "index_playlist_ranks_on_player_id", using: :btree
+  add_index "playlist_ranks", ["season_id"], name: "index_playlist_ranks_on_season_id", using: :btree
 
   create_table "playlists", force: :cascade do |t|
     t.string   "uid",                         null: false
@@ -90,5 +106,9 @@ ActiveRecord::Schema.define(version: 20151231062211) do
 
   add_index "weapons", ["uid"], name: "index_weapons_on_uid", unique: true, using: :btree
 
+  add_foreign_key "playlist_ranks", "csr_tiers", name: "fk_playlist_ranks_csr_tier_id"
+  add_foreign_key "playlist_ranks", "players", name: "fk_playlist_ranks_player_id"
+  add_foreign_key "playlist_ranks", "playlists", name: "fk_playlist_ranks_playlist_id"
+  add_foreign_key "playlist_ranks", "seasons", name: "fk_playlist_ranks_season_id"
   add_foreign_key "service_records", "players", name: "fk_service_records_player_id"
 end
