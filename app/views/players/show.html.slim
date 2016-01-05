@@ -19,4 +19,4 @@ h1#profile-header
   - @player.playlist_ranks.current_season.highest_first.preload(:csr_tier, :playlist).each do |pr|
     .playlist-rank
       img src=pr.csr_tier.image_url
-      span #{pr.playlist.name}: #{pr.csr_tier.name}
+      span #{pr.playlist.name}: #{playlist_rank_label(pr)}
