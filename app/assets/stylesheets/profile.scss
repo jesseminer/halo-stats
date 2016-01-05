@@ -1,10 +1,21 @@
 #profile-header {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  margin: 15px 0;
 
   img {
     height: 75px;
     margin-right: 5px;
+  }
+
+  h1 {
+    margin-right: auto;
+  }
+
+  .refresh-btn {
+    border: 1px solid $gray_light;
+    font-size: 90%;
   }
 }
 

@@ -1,6 +1,7 @@
-h1#profile-header
+#profile-header
   img src=@player.emblem_url
-  = @player.gamertag
+  h1 = @player.gamertag
+  a.pure-button.refresh-btn href=player_path(@player) data-method="put" Refresh Stats
 .pure-g.main-stats
   .pure-u-1.pure-u-sm-1-4
     .panel
