@@ -6,7 +6,10 @@ class FetchPlayer
   end
 
   def update
+    raise CustomErrors::PlayerNotFound if @player.gamertag.length > 15
     json = api_client.arena_stats
+    raise CustomErrors::PlayerNotFound if json['SpartanRank'] == 0
+
     @player.update!(
       gamertag: json['PlayerId']['Gamertag'],
       spartan_rank: json['SpartanRank'],

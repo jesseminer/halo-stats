@@ -23,6 +23,14 @@ img {
   max-width: 100%;
 }
 
+.error {
+  color: $red;
+}
+
+.margin-bottom-x {
+  margin-bottom: 20px;
+}
+
 .panel {
   padding: 15px;
   border: 1px solid $gray_extra_light;

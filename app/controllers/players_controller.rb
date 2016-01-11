@@ -5,18 +5,24 @@ class PlayersController < ApplicationController
 
   def update
     player = Player.find(params[:id])
-    FetchPlayer.new(player.gamertag).update
-    redirect_to player_path(player)
+    update_and_go_to_profile(player.gamertag)
   end
 
   def search
     player = Player.find_by_gamertag(params[:gamertag])
-    if player.present?
-      redirect_to player_path(player)
-    else
-      svc = FetchPlayer.new(params[:gamertag])
-      svc.update
-      redirect_to player_path(svc.player)
-    end
+    player.present? ?
+      redirect_to(player_path(player)) :
+      update_and_go_to_profile(params[:gamertag])
+  end
+
+  private
+
+  def update_and_go_to_profile(gamertag)
+    svc = FetchPlayer.new(gamertag)
+    svc.update
+    redirect_to player_path(svc.player)
+  rescue CustomErrors::PlayerNotFound => e
+    flash['error'] = "We could not find the player \"#{gamertag}\""
+    redirect_to root_path
   end
 end

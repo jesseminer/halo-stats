@@ -2,6 +2,8 @@
   .pure-g
     .pure-u-1.pure-u-sm-1-8
     .pure-u-1.pure-u-sm-9-12
+      - if flash['error'].present?
+        .error.margin-bottom-x = flash['error']
       = render 'players/search_form'
       p Enter your gamertag (or a friend's!) to see your Halo 5 stats.
     .pure-u-1.pure-u-sm-1-8
