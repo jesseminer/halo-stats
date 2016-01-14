@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151231080606) do
+ActiveRecord::Schema.define(version: 20160114011102) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,9 +33,11 @@ ActiveRecord::Schema.define(version: 20151231080606) do
     t.datetime "updated_at",        null: false
     t.text     "spartan_image_url"
     t.text     "emblem_url"
+    t.text     "slug",              null: false
   end
 
   add_index "players", ["gamertag"], name: "index_players_on_gamertag", unique: true, using: :btree
+  add_index "players", ["slug"], name: "index_players_on_slug", unique: true, using: :btree
 
   create_table "playlist_ranks", force: :cascade do |t|
     t.integer  "player_id",        null: false
