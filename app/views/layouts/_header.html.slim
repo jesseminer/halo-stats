@@ -1,4 +1,5 @@
 #header
   a href=root_path
     h1 HaloStats
-  = render 'players/search_form'
+  - unless controller_name == 'landing'
+    = render 'players/search_form'
