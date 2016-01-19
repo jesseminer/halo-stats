@@ -9,10 +9,14 @@ class PlayersController < ApplicationController
   end
 
   def search
-    player = Player.find_by_gamertag(params[:gamertag])
-    player.present? ?
-      redirect_to(player_path(player)) :
-      update_and_go_to_profile(params[:gamertag])
+    gt = params[:gamertag].gsub(/[^A-Za-z0-9 ]/, '').strip
+    if gt.present?
+      player = Player.find_by_gamertag(gt)
+      player.present? ? redirect_to(player_path(player)) : update_and_go_to_profile(gt)
+    else
+      flash['error'] = 'Please enter a valid gamertag'
+      redirect_to root_path
+    end
   end
 
   private
