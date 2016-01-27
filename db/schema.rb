@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160114011102) do
+ActiveRecord::Schema.define(version: 20160127015851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,6 +95,23 @@ ActiveRecord::Schema.define(version: 20160114011102) do
   add_index "service_records", ["player_id", "game_mode"], name: "index_service_records_on_player_id_and_game_mode", unique: true, using: :btree
   add_index "service_records", ["player_id"], name: "index_service_records_on_player_id", using: :btree
 
+  create_table "weapon_usages", force: :cascade do |t|
+    t.integer  "player_id",                null: false
+    t.integer  "weapon_id",                null: false
+    t.integer  "kills",        default: 0, null: false
+    t.integer  "headshots",    default: 0, null: false
+    t.integer  "damage_dealt", default: 0, null: false
+    t.integer  "shots_fired",  default: 0, null: false
+    t.integer  "shots_hit",    default: 0, null: false
+    t.integer  "time_used",    default: 0, null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "weapon_usages", ["player_id", "weapon_id"], name: "index_weapon_usages_on_player_id_and_weapon_id", unique: true, using: :btree
+  add_index "weapon_usages", ["player_id"], name: "index_weapon_usages_on_player_id", using: :btree
+  add_index "weapon_usages", ["weapon_id"], name: "index_weapon_usages_on_weapon_id", using: :btree
+
   create_table "weapons", force: :cascade do |t|
     t.string   "uid",              null: false
     t.string   "name",             null: false
@@ -113,4 +130,6 @@ ActiveRecord::Schema.define(version: 20160114011102) do
   add_foreign_key "playlist_ranks", "playlists", name: "fk_playlist_ranks_playlist_id"
   add_foreign_key "playlist_ranks", "seasons", name: "fk_playlist_ranks_season_id"
   add_foreign_key "service_records", "players", name: "fk_service_records_player_id"
+  add_foreign_key "weapon_usages", "players", name: "fk_weapon_usages_player_id"
+  add_foreign_key "weapon_usages", "weapons", name: "fk_weapon_usages_weapon_id"
 end
