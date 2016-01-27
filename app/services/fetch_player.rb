@@ -19,6 +19,7 @@ class FetchPlayer
     update_arena_svc_record(json['ArenaStats'])
     update_warzone_svc_record(api_client.warzone_stats['WarzoneStat'])
     update_playlist_ranks(json['ArenaStats']['ArenaPlaylistStats'])
+    update_weapon_stats(json['ArenaStats']['WeaponStats'])
   end
 
   private
@@ -62,5 +63,24 @@ class FetchPlayer
 
   def update_warzone_svc_record(json)
     ServiceRecord.warzone.find_or_initialize_by(player: @player).update!(svc_record_fields(json))
+  end
+
+  def update_weapon_stats(json)
+    json.each do |data|
+      weapon = Weapon.find_by(uid: data['WeaponId']['StockId'])
+      if weapon.nil?
+        Rails.logger.info("No weapon found with uid #{data['WeaponId']['StockId']}")
+        next
+      end
+
+      WeaponUsage.find_or_initialize_by(player: @player, weapon: weapon).update!(
+        kills: data['TotalKills'],
+        headshots: data['TotalHeadshots'],
+        damage_dealt: data['TotalDamageDealt'].to_f.round,
+        shots_fired: data['TotalShotsFired'],
+        shots_hit: data['TotalShotsLanded'],
+        time_used: ApiClient.parse_duration(data['TotalPossessionTime'])
+      )
+    end
   end
 end
