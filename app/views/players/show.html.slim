@@ -15,4 +15,8 @@
     .panel
       h3 Warzone Stats
       = render 'service_records/basic_stats', svc_record: @player.service_records.warzone.first
-= render 'players/playlist_ranks', player: @player
+.pure-g.margin-top-x
+  .pure-u-1.pure-u-md-1-2
+    = render 'players/playlist_ranks', player: @player
+  .pure-u-1.pure-u-md-1-2
+    = render 'players/weapon_efficiency', weapon_stats: @weapon_stats

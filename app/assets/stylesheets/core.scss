@@ -23,8 +23,16 @@ img {
   max-width: 100%;
 }
 
+.center {
+  text-align: center;
+}
+
 .error {
   color: $red;
+}
+
+.margin-top-x {
+  margin-top: 20px;
 }
 
 .margin-bottom-x {

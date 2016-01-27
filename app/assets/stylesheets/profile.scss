@@ -37,8 +37,6 @@
 }
 
 #profile-playlists {
-  margin-top: 25px;
-
   .playlist-rank {
     margin-top: 10px;
     display: flex;
@@ -48,5 +46,23 @@
       width: 60px;
       margin-right: 5px;
     }
+  }
+}
+
+#profile-weapons {
+  thead {
+    background-color: $white;
+  }
+
+  th {
+    font-weight: normal;
+  }
+
+  img {
+    height: 50px;
+  }
+
+  .weapon-name {
+    font-size: 80%;
   }
 }

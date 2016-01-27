@@ -1,6 +1,7 @@
 class PlayersController < ApplicationController
   def show
     @player = Player.find(params[:id])
+    @weapon_stats = weapon_usage_stats
   end
 
   def update
@@ -20,6 +21,14 @@ class PlayersController < ApplicationController
   end
 
   private
+
+  def weapon_usage_stats
+    @player.weapon_usages.joins(:weapon)
+      .select('weapon_usages.*, (weapon_usages.kills::float / weapon_usages.time_used * 60) as kpm')
+      .where('weapon_usages.time_used > 300')
+      .where(weapons: { weapon_type: ['Standard', 'Power'] })
+      .preload(:weapon).order('kpm desc')
+  end
 
   def update_and_go_to_profile(gamertag)
     svc = FetchPlayer.new(gamertag)

@@ -1,0 +1,15 @@
+h3 Arena Weapon Efficiency
+table#profile-weapons.pure-table.pure-table-horizontal.pure-table-striped
+  thead
+    th Weapon
+    th Kills
+    th Kills / Minute
+  tbody
+    - weapon_stats.each do |w|
+      tr
+        td.center
+          img src=w.weapon.image_url
+          br
+          span.weapon-name = w.weapon.name
+        td = w.kills
+        td = w.kpm.round(1)
