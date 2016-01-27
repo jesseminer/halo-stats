@@ -7,7 +7,7 @@ module PlaylistRankHelper
       when 'Champion'
         "#{name} #{pr.rank}"
       else
-        name
+        "#{name} (#{pr.progress_percent}%)"
     end
   end
 end

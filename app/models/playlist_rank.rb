@@ -7,5 +7,5 @@ class PlaylistRank < ActiveRecord::Base
   validates :player_id, uniqueness: { scope: [:playlist_id, :season_id] }
 
   scope :current_season, -> { where(season_id: Season.current.id) }
-  scope :highest_first, -> { joins(:csr_tier).order('csr_tiers.identifier desc') }
+  scope :highest_first, -> { joins(:csr_tier).order('csr_tiers.identifier desc, playlist_ranks.csr desc') }
 end
