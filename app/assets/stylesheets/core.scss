@@ -1,9 +1,3 @@
-@mixin flex-row {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -27,29 +21,4 @@ a {
 
 img {
   max-width: 100%;
-}
-
-.center {
-  text-align: center;
-}
-
-.error {
-  color: $red;
-}
-
-.margin-top-x {
-  margin-top: 20px;
-}
-
-.margin-bottom-x {
-  margin-bottom: 20px;
-}
-
-.panel {
-  padding: 15px;
-  border: 1px solid $gray_extra_light;
-  border-radius: 10px;
-  @media screen and (max-width: 35.5em) {
-    margin-bottom: 15px;
-  }
 }

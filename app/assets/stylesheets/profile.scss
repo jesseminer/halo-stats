@@ -1,7 +1,5 @@
 #profile-header {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
+  @include flex-row;
   margin: 15px 0;
 
   img {
@@ -33,39 +31,5 @@
     color: $gray_light;
     text-transform: uppercase;
     margin-bottom: 15px;
-  }
-}
-
-#profile-playlists {
-  .playlist-rank {
-    margin-top: 10px;
-    display: flex;
-    align-items: center;
-
-    img {
-      width: 60px;
-      margin-right: 5px;
-    }
-  }
-}
-
-#profile-weapons {
-  .weapon-listing {
-    @include flex-row;
-    font-size: 85%;
-    padding: 5px 0;
-    border-bottom: 1px solid $gray_extra_light;
-
-    .weapon-image {
-      height: 70px;
-      margin-right: 10px;
-    }
-
-    .weapon-name {
-      font-weight: bold;
-      color: $blue_green;
-      text-transform: uppercase;
-      margin-bottom: 5px;
-    }
   }
 }

@@ -1,0 +1,24 @@
+.listing-container {
+  .listing {
+    @include flex-row;
+    font-size: 85%;
+    padding: 5px 0;
+    border-bottom: 1px solid $gray_extra_light;
+
+    &:last-child {
+      border-bottom-width: 0;
+    }
+
+    .listing-image {
+      height: 70px;
+      margin-right: 10px;
+    }
+
+    .listing-title {
+      font-weight: bold;
+      color: $blue_green;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+  }
+}

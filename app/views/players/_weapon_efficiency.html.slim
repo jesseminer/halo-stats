@@ -1,9 +1,8 @@
-#profile-weapons
-  h3 Arena Weapon Efficiency
-  .panel
-    - weapon_stats.each do |w|
-      .weapon-listing
-        img.weapon-image src=w.weapon.image_url
-        div
-          .weapon-name = w.weapon.name
-          | #{w.kpm.round(1)} kills per minute • #{w.kills} total
+h3 Arena Weapon Efficiency
+.panel.listing-container
+  - weapon_stats.each do |w|
+    .listing
+      img.listing-image src=w.weapon.image_url
+      div
+        .listing-title = w.weapon.name
+        | #{w.kpm.round(1)} kills per minute • #{w.kills} total

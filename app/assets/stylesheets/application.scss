@@ -1,7 +1,9 @@
 @import 'purecss';
 @import 'variables';
+@import 'mixins';
 @import 'core';
 @import 'pure_customizations';
+@import 'components/*';
 @import 'layout';
 @import 'landing';
 @import 'profile';
