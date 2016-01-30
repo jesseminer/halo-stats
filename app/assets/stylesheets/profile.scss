@@ -50,19 +50,22 @@
 }
 
 #profile-weapons {
-  thead {
-    background-color: $white;
-  }
+  .weapon-listing {
+    @include flex-row;
+    font-size: 85%;
+    padding: 5px 0;
+    border-bottom: 1px solid $gray_extra_light;
 
-  th {
-    font-weight: normal;
-  }
+    .weapon-image {
+      height: 70px;
+      margin-right: 10px;
+    }
 
-  img {
-    height: 50px;
-  }
-
-  .weapon-name {
-    font-size: 80%;
+    .weapon-name {
+      font-weight: bold;
+      color: $blue_green;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
   }
 }
