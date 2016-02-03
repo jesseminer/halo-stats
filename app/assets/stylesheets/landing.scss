@@ -1,4 +1,19 @@
 #landing-search {
-  margin-top: 100px;
+  margin-top: 80px;
   text-align: center;
+}
+
+#recently-joined {
+  margin-top: 30px;
+  @include flex-column;
+
+  .player-listing {
+    @include flex-row;
+    margin-top: 10px;
+
+    img {
+      width: 40px;
+      margin-right: 10px;
+    }
+  }
 }
