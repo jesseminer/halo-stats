@@ -1,8 +1,11 @@
-h3 Playlist Ranks (#{Season.current.name})
-.panel.listing-container
-  - player.playlist_ranks.current_season.highest_first.preload(:csr_tier, :playlist).each do |pr|
-    .listing
-      img.listing-image src=pr.csr_tier.image_url
-      div
-        .listing-title = pr.playlist.name
-        = playlist_rank_label(pr)
+h3 Playlist Ranks
+.panel
+  - Season.order(start_time: :desc).each do |season|
+    h4 = season.name
+    .listing-container.margin-bottom-x
+      - player.playlist_ranks.where(season: season).highest_first.preload(:csr_tier, :playlist).each do |pr|
+        .listing
+          img.listing-image src=pr.csr_tier.image_url
+          div
+            .listing-title = pr.playlist.name
+            = playlist_rank_label(pr)
