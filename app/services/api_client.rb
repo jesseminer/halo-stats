@@ -24,8 +24,9 @@ class ApiClient
     Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) { |http| http.request(req) }
   end
 
-  def arena_stats
-    self.class.get('stats/h5/servicerecords/arena', players: @gamertag)['Results'][0]['Result']
+  def arena_stats(season_uid = nil)
+    json = self.class.get('stats/h5/servicerecords/arena', players: @gamertag, seasonId: season_uid)
+    json['Results'][0]['Result']
   end
 
   def emblem

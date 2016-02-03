@@ -44,20 +44,9 @@ class FetchPlayer
   end
 
   def update_playlist_ranks(json)
-    json.each do |attrs|
-      csr_attrs = attrs['Csr']
-      next if csr_attrs.blank?
-
-      PlaylistRank.find_or_initialize_by(
-        player: @player,
-        season: Season.current,
-        playlist: Playlist.find_by(uid: attrs['PlaylistId'])
-      ).update!(
-        csr_tier: CsrTier.find_by(identifier: "#{csr_attrs['DesignationId']}-#{csr_attrs['Tier']}"),
-        progress_percent: csr_attrs['PercentToNextTier'],
-        csr: csr_attrs['Csr'],
-        rank: csr_attrs['Rank']
-      )
+    current_season_id = Season.current.id
+    Season.find_each do |s|
+      s.id == current_season_id ? s.update_ranks(@player, json) : s.update_ranks(@player)
     end
   end
 
