@@ -1,7 +1,11 @@
 h3 Arena Weapon Efficiency
-.panel.listing-container
+.pure-form
+  = label_tag 'include-power-weapons' do
+    => check_box_tag 'include-power-weapons'
+    | Include power weapons and vehicles
+.panel.listing-container.margin-top
   - weapon_stats.each do |w|
-    .listing
+    .listing.weapon-listing data-weapontype=w.weapon.weapon_type class=('hide' unless w.weapon.weapon_type == 'Standard')
       img.listing-image src=w.weapon.image_url
       div
         .listing-title = w.weapon.name
