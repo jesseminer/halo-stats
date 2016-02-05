@@ -1,6 +1,7 @@
 class PlayersController < ApplicationController
   def show
     @player = Player.find(params[:id])
+    @seasons = Season.order(start_time: :desc)
     @weapon_stats = weapon_usage_stats
   end
 

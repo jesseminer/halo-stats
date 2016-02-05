@@ -1,8 +1,9 @@
 h3 Playlist Ranks
-.panel
-  - Season.order(start_time: :desc).each do |season|
-    h4 = season.name
-    .listing-container.margin-bottom-x
+.pure-form
+  = select_tag 'select-season', options_from_collection_for_select(seasons, :id, :name)
+.panel.margin-top
+  - seasons.each_with_index do |season, i|
+    .season-ranks.listing-container id="season-#{season.id}" class=('hide' unless i == 0)
       - player.playlist_ranks.where(season: season).highest_first.preload(:csr_tier, :playlist).each do |pr|
         .listing
           img.listing-image src=pr.csr_tier.image_url
