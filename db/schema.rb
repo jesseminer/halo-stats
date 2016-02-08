@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160127015851) do
+ActiveRecord::Schema.define(version: 20160208030256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,9 +106,12 @@ ActiveRecord::Schema.define(version: 20160127015851) do
     t.integer  "time_used",    default: 0, null: false
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+    t.integer  "game_mode",    default: 0, null: false
   end
 
-  add_index "weapon_usages", ["player_id", "weapon_id"], name: "index_weapon_usages_on_player_id_and_weapon_id", unique: true, using: :btree
+  add_index "weapon_usages", ["game_mode", "player_id", "weapon_id"], name: "index_weapon_usages_on_game_mode_and_player_id_and_weapon_id", unique: true, using: :btree
+  add_index "weapon_usages", ["game_mode", "player_id"], name: "index_weapon_usages_on_game_mode_and_player_id", using: :btree
+  add_index "weapon_usages", ["game_mode"], name: "index_weapon_usages_on_game_mode", using: :btree
   add_index "weapon_usages", ["player_id"], name: "index_weapon_usages_on_player_id", using: :btree
   add_index "weapon_usages", ["weapon_id"], name: "index_weapon_usages_on_weapon_id", using: :btree
 
