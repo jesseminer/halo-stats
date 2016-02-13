@@ -1,5 +1,5 @@
 h3 Playlist Ranks
-.pure-form
+.pure-form.small
   = select_tag 'select-season', options_from_collection_for_select(seasons, :id, :name)
 .panel.margin-top
   - seasons.each_with_index do |season, i|

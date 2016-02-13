@@ -1,0 +1,5 @@
+.listing.weapon-listing data-weapontype=wu.weapon.weapon_type class=('hide' unless wu.weapon.weapon_type == 'Standard')
+  img.listing-image src=wu.weapon.image_url
+  div
+    .listing-title = wu.weapon.name
+    | #{wu.kpm.round(1)} kills per minute • #{wu.kills} total

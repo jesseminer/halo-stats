@@ -1,12 +1,11 @@
-h3 Arena Weapon Efficiency
-.pure-form
+h3 Weapon Efficiency
+.pure-form.small
+  = select_tag 'select-game-mode', options_for_select([['Arena', 'arena'], ['Warzone', 'warzone']]), class: 'margin-right'
   = label_tag 'include-power-weapons' do
     => check_box_tag 'include-power-weapons'
-    | Include power weapons and vehicles
+    | Show power weapons and vehicles
 .panel.listing-container.margin-top
-  - weapon_stats.each do |w|
-    .listing.weapon-listing data-weapontype=w.weapon.weapon_type class=('hide' unless w.weapon.weapon_type == 'Standard')
-      img.listing-image src=w.weapon.image_url
-      div
-        .listing-title = w.weapon.name
-        | #{w.kpm.round(1)} kills per minute • #{w.kills} total
+  #arena-weapons
+    = render partial: 'weapons/efficiency_listing', collection: weapon_stats.arena, as: 'wu'
+  #warzone-weapons.hide
+    = render partial: 'weapons/efficiency_listing', collection: weapon_stats.warzone, as: 'wu'
