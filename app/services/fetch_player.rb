@@ -17,9 +17,12 @@ class FetchPlayer
       emblem_url: api_client.emblem
     )
     update_arena_svc_record(json['ArenaStats'])
-    update_warzone_svc_record(api_client.warzone_stats['WarzoneStat'])
     update_playlist_ranks(json['ArenaStats']['ArenaPlaylistStats'])
-    update_weapon_stats(json['ArenaStats']['WeaponStats'])
+    update_weapon_stats(json['ArenaStats']['WeaponStats'], :arena)
+
+    warzone_json = api_client.warzone_stats['WarzoneStat']
+    update_warzone_svc_record(warzone_json)
+    update_weapon_stats(warzone_json['WeaponStats'], :warzone)
   end
 
   private
@@ -54,7 +57,7 @@ class FetchPlayer
     ServiceRecord.warzone.find_or_initialize_by(player: @player).update!(svc_record_fields(json))
   end
 
-  def update_weapon_stats(json)
+  def update_weapon_stats(json, game_mode)
     json.each do |data|
       weapon = Weapon.find_by(uid: data['WeaponId']['StockId'])
       if weapon.nil?
@@ -62,7 +65,9 @@ class FetchPlayer
         next
       end
 
-      WeaponUsage.find_or_initialize_by(player: @player, weapon: weapon).update!(
+      weapon_usages = game_mode == :arena ? WeaponUsage.arena : WeaponUsage.warzone
+
+      weapon_usages.find_or_initialize_by(player: @player, weapon: weapon).update!(
         kills: data['TotalKills'],
         headshots: data['TotalHeadshots'],
         damage_dealt: data['TotalDamageDealt'].to_f.round,
