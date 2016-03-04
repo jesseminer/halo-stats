@@ -10,12 +10,6 @@ class FetchPlayer
     json = api_client.arena_stats
     raise CustomErrors::PlayerNotFound if json['SpartanRank'] == 0
 
-    @player.update!(
-      gamertag: json['PlayerId']['Gamertag'],
-      spartan_rank: json['SpartanRank'],
-      spartan_image_url: api_client.spartan_image,
-      emblem_url: api_client.emblem
-    )
     update_arena_svc_record(json['ArenaStats'])
     update_playlist_ranks(json['ArenaStats']['ArenaPlaylistStats'])
     update_weapon_stats(json['ArenaStats']['WeaponStats'], :arena)
@@ -23,6 +17,14 @@ class FetchPlayer
     warzone_json = api_client.warzone_stats['WarzoneStat']
     update_warzone_svc_record(warzone_json)
     update_weapon_stats(warzone_json['WeaponStats'], :warzone)
+
+    @player.update!(
+      gamertag: json['PlayerId']['Gamertag'],
+      spartan_rank: json['SpartanRank'],
+      spartan_image_url: api_client.spartan_image,
+      emblem_url: api_client.emblem,
+      refreshed_at: Time.current
+    )
   end
 
   private
@@ -47,9 +49,9 @@ class FetchPlayer
   end
 
   def update_playlist_ranks(json)
-    current_season_id = Season.current.id
-    Season.find_each do |s|
-      s.id == current_season_id ? s.update_ranks(@player, json) : s.update_ranks(@player)
+    Season.current.update_ranks(@player, json)
+    Season.where('end_time > ?', @player.refreshed_at || '2015-01-01').each do |s|
+      s.update_ranks(@player)
     end
   end
 
