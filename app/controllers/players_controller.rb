@@ -26,7 +26,7 @@ class PlayersController < ApplicationController
   def weapon_usage_stats
     @player.weapon_usages.joins(:weapon)
       .select('weapon_usages.*, (weapon_usages.kills::float / weapon_usages.time_used * 60) as kpm')
-      .where('weapon_usages.time_used > 300')
+      .where('weapon_usages.time_used >= 120')
       .preload(:weapon).order('kpm desc')
   end
 
