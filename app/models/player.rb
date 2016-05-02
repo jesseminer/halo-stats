@@ -1,7 +1,7 @@
 class Player < ActiveRecord::Base
-  has_many :playlist_ranks
-  has_many :service_records
-  has_many :weapon_usages
+  has_many :playlist_ranks, dependent: :destroy
+  has_many :service_records, dependent: :destroy
+  has_many :weapon_usages, dependent: :destroy
 
   validates :gamertag, presence: true, uniqueness: true
   validates :slug, presence: true, uniqueness: true
