@@ -12,4 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require lodash
+//= require backbone
 //= require_tree .
