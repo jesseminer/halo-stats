@@ -14,3 +14,9 @@
       a.player-listing href=player_path(p)
         img src=p.emblem_url
         = p.gamertag
+
+- content_for :javascript do
+  javascript:
+    $(function () {
+      new app.LandingView().render();
+    });

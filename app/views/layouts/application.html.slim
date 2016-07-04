@@ -11,4 +11,6 @@ html
     = render 'layouts/header'
     .container
       = yield
+    = render 'misc/js_config'
     = javascript_include_tag 'application'
+    = content_for :javascript
