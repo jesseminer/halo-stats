@@ -17,8 +17,10 @@ app.LandingView = app.FullPageView.extend({
     });
   },
 
-  showProfile: function () {
+  showProfile: function (e) {
+    e.preventDefault();
     this.undelegateEvents();
-    new app.PlayerView().render();
+    var player = new app.Player({ id: $(e.currentTarget).data('slug') });
+    new app.PlayerView({ model: player }).render();
   }
 });

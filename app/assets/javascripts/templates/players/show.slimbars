@@ -1,0 +1,19 @@
+.back.pure-button Back
+#profile-header
+  img src="{{emblem_url}}"
+  h1
+    | {{gamertag}}
+  a.pure-button.refresh-btn href="players/{{slug}}" data-method="put" Refresh Stats
+.pure-g.main-stats
+  .pure-u-1.pure-u-sm-1-4
+    .panel
+      img src="{{spartan_image_url}}"
+      h4 Spartan Rank {{spartan_rank}}
+  .pure-u-1.pure-u-sm-9-24
+    .panel
+      h3 Arena Stats
+      | {{> service_records/_basic_stats arena_stats}}
+  .pure-u-1.pure-u-sm-9-24
+    .panel
+      h3 Warzone Stats
+      | {{> service_records/_basic_stats warzone_stats}}

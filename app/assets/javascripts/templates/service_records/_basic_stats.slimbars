@@ -1,0 +1,9 @@
+.number
+  | {{win_percentage}}%
+.label Win Percentage
+.number
+  | {{kd_ratio}}
+.label K/D Ratio
+.number
+  | {{games_played}}
+.label Games Played

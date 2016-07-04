@@ -4,9 +4,7 @@ class PlayersController < ApplicationController
   end
 
   def show
-    @player = Player.find(params[:id])
-    @seasons = Season.order(start_time: :desc)
-    @weapon_stats = weapon_usage_stats
+    render json: PlayerSerializer.for_profile(Player.find(params[:id]))
   end
 
   def update
