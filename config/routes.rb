@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root to: 'landing#show'
 
-  resources :players, only: [:show, :update] do
+  resources :players, only: [:index, :show, :update] do
     collection do
       post :search
     end

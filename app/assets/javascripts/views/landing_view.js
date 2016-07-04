@@ -1,10 +1,23 @@
 app.LandingView = app.FullPageView.extend({
-  content: '<div>Hi<br><span class="player">Profile</span></div>',
+  template: 'landing/show',
   events: {
-    'click .player': 'playerProfile'
+    'click .player-listing': 'showProfile'
   },
 
-  playerProfile: function () {
+  initialize: function () {
+    this.model = new Backbone.Model();
+    this.listenTo(this.model, 'change:recent_players', this.render);
+    this.loadRecentPlayers();
+  },
+
+  loadRecentPlayers: function () {
+    var view = this;
+    return $.getJSON('/players', function (response) {
+      view.model.set('recent_players', response);
+    });
+  },
+
+  showProfile: function () {
     this.undelegateEvents();
     new app.PlayerView().render();
   }

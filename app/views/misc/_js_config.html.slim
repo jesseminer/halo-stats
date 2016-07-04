@@ -1,2 +1,6 @@
 javascript:
-  window.app = {};
+  window.app = {
+    template: function (templatePath, data) {
+      return HandlebarsTemplates[templatePath](data);
+    }
+  };

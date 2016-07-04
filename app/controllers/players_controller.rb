@@ -1,4 +1,8 @@
 class PlayersController < ApplicationController
+  def index
+    render json: Player.order(created_at: :desc).limit(5)
+  end
+
   def show
     @player = Player.find(params[:id])
     @seasons = Season.order(start_time: :desc)
