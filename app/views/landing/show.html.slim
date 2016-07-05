@@ -1,3 +1,4 @@
 - content_for :javascript do
   javascript:
-    new app.LandingView().render();
+    app.router.loadState({ state: { page: 'landing' } });
+    app.router.currentPage.addToHistory();

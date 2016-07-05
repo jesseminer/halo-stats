@@ -9,7 +9,7 @@ html
     = csrf_meta_tags
   body
     = render 'layouts/header'
-    .container
+    main.container
       = yield
     = render 'misc/js_config'
     = javascript_include_tag 'application'

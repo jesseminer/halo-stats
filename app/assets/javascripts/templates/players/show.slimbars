@@ -1,4 +1,3 @@
-.back.pure-button Back
 #profile-header
   img src="{{emblem_url}}"
   h1
