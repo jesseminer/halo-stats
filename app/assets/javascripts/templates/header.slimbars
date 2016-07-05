@@ -1,0 +1,5 @@
+a.home-link href="/"
+  h1 HaloStats
+form.pure-form.search-form
+  input type="text" name="gamertag" placeholder="Find a player"
+  input.pure-button.pure-button-primary type="submit" value="Search"

@@ -8,10 +8,11 @@ html
     = stylesheet_link_tag 'application', media: 'all'
     = csrf_meta_tags
   body
-    = render 'layouts/header'
+    #header
     main.container
       = yield
     = render 'misc/js_config'
     = javascript_include_tag 'application'
     javascript:
+      new app.HeaderView().render();
       app.router.loadState();

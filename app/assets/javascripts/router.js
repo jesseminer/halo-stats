@@ -21,7 +21,7 @@ app.router = {
       var player = new app.Player({ id: _.last(page.split('/')) });
       view = new app.PlayerView({ model: player });
     }
-    if (view) { app.router.changePage(view, false); }
+    if (view) { app.router.changePage(view); }
   }
 };
 
