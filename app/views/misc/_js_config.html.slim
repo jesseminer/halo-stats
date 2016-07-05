@@ -1,5 +1,10 @@
 javascript:
   window.app = {
+    init: function () {
+      window.onpopstate = app.router.loadState;
+      new app.HeaderView().render();
+      app.router.loadState();
+    },
     template: function (templatePath, data) {
       return HandlebarsTemplates[templatePath](data);
     }

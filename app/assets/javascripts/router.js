@@ -24,5 +24,3 @@ app.router = {
     if (view) { app.router.changePage(view); }
   }
 };
-
-window.onpopstate = app.router.loadState;
