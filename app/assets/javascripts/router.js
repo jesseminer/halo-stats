@@ -1,20 +1,27 @@
 app.router = {
   currentPage: null,
 
-  changePage: function (view, addToHistory) {
-    if (typeof addToHistory === 'undefined') { addToHistory = true; }
+  changePage: function (view) {
     if (app.router.currentPage) { app.router.currentPage.remove(); }
     app.router.currentPage = view;
-    if (addToHistory) { view.addToHistory(); }
   },
 
-  loadState: function (e) {
-    if (e.state.page === 'landing') {
-      app.router.changePage(new app.LandingView().render(), false);
-    } else if (e.state.page === 'player') {
-      var player = new app.Player({ id: e.state.slug });
-      app.router.changePage(new app.PlayerView({ model: player }), false);
+  goToUrl: function (url) {
+    history.pushState({}, '', url);
+    app.router.loadState();
+  },
+
+  loadState: function () {
+    var view;
+    var page = window.location.pathname;
+
+    if (page === '/') {
+      view = new app.LandingView().render();
+    } else if (page.match(/\/players\/.*/)) {
+      var player = new app.Player({ id: _.last(page.split('/')) });
+      view = new app.PlayerView({ model: player });
     }
+    if (view) { app.router.changePage(view, false); }
   }
 };
 

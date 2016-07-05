@@ -13,4 +13,5 @@ html
       = yield
     = render 'misc/js_config'
     = javascript_include_tag 'application'
-    = content_for :javascript
+    javascript:
+      app.router.loadState();

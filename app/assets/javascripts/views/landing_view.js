@@ -10,10 +10,6 @@ app.LandingView = app.FullPageView.extend({
     this.loadRecentPlayers();
   },
 
-  addToHistory: function () {
-    history.pushState({ page: 'landing' }, '', '/');
-  },
-
   loadRecentPlayers: function () {
     var view = this;
     return $.getJSON('/players', function (response) {
@@ -23,7 +19,6 @@ app.LandingView = app.FullPageView.extend({
 
   showProfile: function (e) {
     e.preventDefault();
-    var player = new app.Player({ id: $(e.currentTarget).data('slug') });
-    app.router.changePage(new app.PlayerView({ model: player }));
+    app.router.goToUrl(e.currentTarget.href);
   }
 });
