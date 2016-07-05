@@ -4,7 +4,10 @@ class PlayersController < ApplicationController
   end
 
   def show
-    render json: PlayerSerializer.for_profile(Player.find(params[:id]))
+    respond_to do |format|
+      format.html { render text: '', layout: 'application' }
+      format.json { render json: PlayerSerializer.for_profile(Player.find(params[:id])) }
+    end
   end
 
   def update
