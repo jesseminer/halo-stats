@@ -4,7 +4,7 @@ app.FullPageView = Backbone.View.extend({
   },
 
   render: function () {
-    this.$el.html(app.template(this.template, this.context())).appendTo('main');
+    this.$el.html(app.template(this.template, this.context()));
     return this;
   }
 });

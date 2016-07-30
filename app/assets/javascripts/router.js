@@ -4,6 +4,7 @@ app.router = {
   changePage: function (view) {
     if (app.router.currentPage) { app.router.currentPage.remove(); }
     app.router.currentPage = view;
+    $('main').append(view.$el);
   },
 
   goToUrl: function (url) {
