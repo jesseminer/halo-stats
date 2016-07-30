@@ -1,7 +1,7 @@
 app.LandingView = app.FullPageView.extend({
   template: 'landing/show',
   events: {
-    'click .player-listing': 'showProfile'
+    'click .player-listing': app.router.handleLinkClick
   },
 
   initialize: function () {
@@ -15,10 +15,5 @@ app.LandingView = app.FullPageView.extend({
     return $.getJSON('/players', function (response) {
       view.model.set('recent_players', response);
     });
-  },
-
-  showProfile: function (e) {
-    e.preventDefault();
-    app.router.goToUrl(e.currentTarget.href);
   }
 });

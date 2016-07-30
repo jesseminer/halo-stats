@@ -11,6 +11,11 @@ app.router = {
     app.router.loadState();
   },
 
+  handleLinkClick: function (e) {
+    e.preventDefault();
+    app.router.goToUrl(e.currentTarget.href);
+  },
+
   loadState: function () {
     var view;
     var page = window.location.pathname;
