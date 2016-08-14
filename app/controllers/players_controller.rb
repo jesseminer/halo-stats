@@ -19,10 +19,13 @@ class PlayersController < ApplicationController
     gt = params[:gamertag].gsub(/[^A-Za-z0-9 ]/, '').strip
     if gt.present?
       player = Player.find_by_gamertag(gt)
-      player.present? ? redirect_to(player_path(player)) : update_and_go_to_profile(gt)
+      if player.present?
+        render json: { slug: player.slug }
+      else
+        render json: { error: "We could not find the player \"#{gt}\"" }, status: 400
+      end
     else
-      flash['error'] = 'Please enter a valid gamertag'
-      redirect_to root_path
+      render json: { error: 'Please enter a valid gamertag' }, status: 400
     end
   end
 
