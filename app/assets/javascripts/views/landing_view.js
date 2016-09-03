@@ -20,11 +20,13 @@ app.LandingView = app.FullPageView.extend({
   },
 
   onError: function (response) {
+    this.$('input[type=submit]').prop('disabled', false);
     this.$('.error').text(response.responseJSON.error).removeClass('hide');
   },
 
   search: function (e) {
     e.preventDefault();
+    this.$('input[type=submit]').prop('disabled', true);
     var params = { gamertag: this.$('input[name=gamertag]').val() };
     $.post('/players/search', params, null, 'json').then(this.showPlayerProfile, this.onError);
   },

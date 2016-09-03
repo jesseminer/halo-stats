@@ -11,19 +11,14 @@ class PlayersController < ApplicationController
   end
 
   def update
-    player = Player.find(params[:id])
-    update_and_go_to_profile(player.gamertag)
+    update_profile(Player.find(params[:id]).gamertag)
   end
 
   def search
     gt = params[:gamertag].gsub(/[^A-Za-z0-9 ]/, '').strip
     if gt.present?
       player = Player.find_by_gamertag(gt)
-      if player.present?
-        render json: { slug: player.slug }
-      else
-        render json: { error: "We could not find the player \"#{gt}\"" }, status: 400
-      end
+      player.present? ? render(json: { slug: player.slug }) : update_profile(gt)
     else
       render json: { error: 'Please enter a valid gamertag' }, status: 400
     end
@@ -38,12 +33,11 @@ class PlayersController < ApplicationController
       .preload(:weapon).order('kpm desc')
   end
 
-  def update_and_go_to_profile(gamertag)
+  def update_profile(gamertag)
     svc = FetchPlayer.new(gamertag)
     svc.update
-    redirect_to player_path(svc.player)
+    render json: PlayerSerializer.for_profile(svc.player)
   rescue CustomErrors::PlayerNotFound => e
-    flash['error'] = "We could not find the player \"#{gamertag}\""
-    redirect_to root_path
+    render json: { error: "We could not find the player \"#{gamertag}\"" }, status: 400
   end
 end
