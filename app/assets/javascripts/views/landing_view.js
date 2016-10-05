@@ -9,6 +9,7 @@ app.LandingView = app.FullPageView.extend({
     this.model = new Backbone.Model();
     this.listenTo(this.model, 'change:recent_players', this.render);
     _.bindAll(this, 'onError');
+    $('#header .search-form').addClass('hide');
     this.loadRecentPlayers();
   },
 

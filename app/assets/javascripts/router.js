@@ -20,6 +20,7 @@ app.router = {
   loadState: function () {
     var view;
     var page = window.location.pathname;
+    $('#header .search-form').removeClass('hide');
 
     if (page === '/') {
       view = new app.LandingView().render();
