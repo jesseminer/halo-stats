@@ -1,4 +1,4 @@
-.error.margin-bottom-x.hide
 form.pure-form.search-form
+  .error.hide
   input type="text" name="gamertag" placeholder="Find a player"
   input.pure-button.pure-button-primary type="submit" value="Search"
