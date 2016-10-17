@@ -51,7 +51,7 @@ class FetchPlayer
 
   def update_playlist_ranks(json)
     Season.current.update_ranks(@player, json)
-    Season.where('end_time > ?', @player.refreshed_at || '2015-01-01').each do |s|
+    Season.where('end_time > ?', @player.refreshed_at || '2015-01-01').order(start_time: :desc).limit(3).each do |s|
       s.update_ranks(@player)
     end
   end
