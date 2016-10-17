@@ -1,16 +1,9 @@
-h3 Playlist Ranks
-.pure-form.small
-  select
-    | {{#each seasons}}
-    option value="{{id}}" {{name}}
-    | {{/each}}
-.panel.margin-top
-  .listing-container
-    | {{#each playlist_ranks}}
-    .listing
-      img.listing-image src="{{image_url}}"
-      div
-        .listing-title
-          | {{playlist_name}}
-        | {{label}}
-    | {{/each}}
+.listing-container
+  | {{#each playlist_ranks}}
+  .listing
+    img.listing-image src="{{image_url}}"
+    div
+      .listing-title
+        | {{playlist_name}}
+      | {{label}}
+  | {{/each}}

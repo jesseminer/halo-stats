@@ -1,0 +1,7 @@
+h3 Playlist Ranks
+.pure-form.small
+  select
+    | {{#each seasons}}
+    option value="{{id}}" {{name}}
+    | {{/each}}
+.panel.margin-top.ranks-wrapper
