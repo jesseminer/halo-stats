@@ -1,4 +1,4 @@
-class PlayerSerializer
+class PlayerSerializer < BaseSerializer
   def self.for_profile(player)
     player.as_json(only: [:emblem_url, :gamertag, :id, :slug, :spartan_image_url, :spartan_rank]).merge(
       arena_stats: serialize_service_record(player.service_records.arena.first),

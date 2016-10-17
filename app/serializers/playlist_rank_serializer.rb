@@ -1,4 +1,4 @@
-class PlaylistRankSerializer
+class PlaylistRankSerializer < BaseSerializer
   def self.playlist_rank_label(pr)
     name = pr.csr_tier.name
     case name
