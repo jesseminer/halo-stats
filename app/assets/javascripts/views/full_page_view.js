@@ -1,4 +1,6 @@
 app.FullPageView = Backbone.View.extend({
+  showHeaderSearch: true,
+
   context: function () {
     return this.model.toJSON();
   },

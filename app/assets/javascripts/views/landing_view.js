@@ -1,4 +1,5 @@
 app.LandingView = app.FullPageView.extend({
+  showHeaderSearch: false,
   template: 'landing/show',
   events: {
     'click .player-listing': app.router.handleLinkClick
@@ -8,7 +9,6 @@ app.LandingView = app.FullPageView.extend({
     this.searchView = new app.SearchFormView();
     this.model = new Backbone.Model();
     this.listenTo(this.model, 'change:recent_players', this.render);
-    $('#header .search-form').addClass('hide');
     this.loadRecentPlayers();
   },
 

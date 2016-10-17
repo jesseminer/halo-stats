@@ -5,6 +5,7 @@ app.router = {
     if (app.router.currentPage) { app.router.currentPage.remove(); }
     app.router.currentPage = view;
     $('main').append(view.$el);
+    app.headerView.reset();
   },
 
   goToUrl: function (url) {
@@ -20,7 +21,6 @@ app.router = {
   loadState: function () {
     var view;
     var page = window.location.pathname;
-    $('#header .search-form').removeClass('hide');
 
     if (page === '/') {
       view = new app.LandingView().render();

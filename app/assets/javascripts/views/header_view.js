@@ -12,5 +12,11 @@ app.HeaderView = Backbone.View.extend({
     this.$el.html(app.template('header', {}));
     this.searchView.setElement(this.$('.search-form'));
     return this;
+  },
+
+  reset: function () {
+    app.router.currentPage.showHeaderSearch ?
+      this.render() :
+      this.searchView.$el.addClass('hide');
   }
 });
