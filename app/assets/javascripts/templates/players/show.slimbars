@@ -16,3 +16,5 @@
     .panel
       h3 Warzone Stats
       | {{> service_records/_basic_stats warzone_stats}}
+.pure-g.margin-top-x
+  .pure-u-1.pure-u-md-1-2.playlist-ranks

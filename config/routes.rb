@@ -6,4 +6,5 @@ Rails.application.routes.draw do
       post :search
     end
   end
+  resources :playlist_ranks, only: [:index]
 end

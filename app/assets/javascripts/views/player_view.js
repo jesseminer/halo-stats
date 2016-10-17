@@ -5,6 +5,7 @@ app.PlayerView = app.FullPageView.extend({
   },
 
   initialize: function () {
+    this.seasonSelectorView = new app.SeasonSelectorView({ model: this.model });
     this.listenTo(this.model, 'sync', this.render);
     this.model.fetch();
   },
@@ -12,5 +13,9 @@ app.PlayerView = app.FullPageView.extend({
   refreshStats: function (e) {
     $(e.currentTarget).prop('disabled', true);
     this.model.save();
+  },
+
+  renderSubviews: function () {
+    this.seasonSelectorView.setElement(this.$('.playlist-ranks')).loadRanks();
   }
 });

@@ -5,6 +5,9 @@ app.FullPageView = Backbone.View.extend({
 
   render: function () {
     this.$el.html(app.template(this.template, this.context()));
+    this.renderSubviews();
     return this;
-  }
+  },
+
+  renderSubviews: _.noop
 });
