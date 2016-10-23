@@ -3,10 +3,6 @@ app.SeasonSelectorView = Backbone.View.extend({
     'change select': 'changeSeason'
   },
 
-  initialize: function () {
-    _.bindAll(this, 'render');
-  },
-
   changeSeason: function (e) {
     this.filterBySeason(parseInt($(e.target).val())).renderRanks();
   },

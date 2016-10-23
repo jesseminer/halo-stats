@@ -1,0 +1,9 @@
+h3 Weapon Efficiency
+.pure-form.small
+  select.game-mode.margin-right
+    option value="arena" Arena
+    option value="warzone" Warzone
+  label for="include-power-weapons"
+    input#include-power-weapons> type="checkbox"
+    | Show power weapons and vehicles
+.panel.margin-top.weapons-wrapper
