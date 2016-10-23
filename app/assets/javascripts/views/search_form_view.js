@@ -17,7 +17,7 @@ app.SearchFormView = Backbone.View.extend({
     this.$('input[type=submit]').prop('disabled', true);
     this.$('.error').empty().addClass('hide');
     var params = { gamertag: this.$('input[name=gamertag]').val() };
-    $.post('/players/search', params, null, 'json').then(this.showPlayerProfile, this.onError);
+    $.getJSON('/players/search', params).then(this.showPlayerProfile, this.onError);
   },
 
   showPlayerProfile: function (response) {
