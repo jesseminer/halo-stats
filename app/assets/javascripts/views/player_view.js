@@ -6,6 +6,7 @@ app.PlayerView = app.FullPageView.extend({
 
   initialize: function () {
     this.seasonSelectorView = new app.SeasonSelectorView({ model: this.model });
+    this.weaponStatsView = new app.WeaponStatsView({ model: this.model });
     this.listenTo(this.model, 'sync', this.render);
     this.model.fetch();
   },
@@ -17,5 +18,6 @@ app.PlayerView = app.FullPageView.extend({
 
   renderSubviews: function () {
     this.seasonSelectorView.setElement(this.$('.playlist-ranks')).loadRanks();
+    this.weaponStatsView.setElement(this.$('.weapon-stats')).load();
   }
 });

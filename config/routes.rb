@@ -7,4 +7,5 @@ Rails.application.routes.draw do
     end
   end
   resources :playlist_ranks, only: [:index]
+  resources :weapon_usages, only: [:index]
 end
