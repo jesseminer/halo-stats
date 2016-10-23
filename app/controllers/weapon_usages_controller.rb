@@ -9,7 +9,8 @@ class WeaponUsagesController < ApplicationController
 
   def select_sql
     <<-SQL
-      weapon_usages.*, weapons.name, weapons.image_url, weapons.weapon_type,
+      weapon_usages.kills, weapon_usages.game_mode,
+      weapons.name, weapons.image_url, weapons.weapon_type,
       (weapon_usages.kills::float / weapon_usages.time_used * 60) as kpm
     SQL
   end
