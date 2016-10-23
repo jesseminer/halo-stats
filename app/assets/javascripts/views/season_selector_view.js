@@ -4,7 +4,7 @@ app.SeasonSelectorView = Backbone.View.extend({
   },
 
   changeSeason: function (e) {
-    this.filterBySeason(parseInt($(e.target).val())).renderRanks();
+    this.filterBySeason(parseInt($(e.currentTarget).val())).renderRanks();
   },
 
   filterBySeason: function (seasonId) {
