@@ -3,8 +3,20 @@ app.SeasonSelectorView = Backbone.View.extend({
     'change select': 'changeSeason'
   },
 
+  initialize: function () {
+    _.bindAll(this, 'addNewRanks');
+  },
+
+  addNewRanks: function (response) {
+    _.remove(this.allRanks, { season_id: response.season_id });
+    this.allRanks = this.allRanks.concat(response.ranks);
+    this.filterBySeason(response.season_id).renderRanks();
+  },
+
   changeSeason: function (e) {
-    this.filterBySeason(parseInt($(e.currentTarget).val())).renderRanks();
+    var seasonId = parseInt($(e.currentTarget).val());
+    this.$('.ranks-wrapper').text('Loading...');
+    this.model.updateRanksForSeason(seasonId).done(this.addNewRanks);
   },
 
   filterBySeason: function (seasonId) {

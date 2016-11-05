@@ -14,6 +14,15 @@ class PlayersController < ApplicationController
     update_profile(Player.find(params[:id]).gamertag)
   end
 
+  def update_ranks
+    player = Player.find(params[:id])
+    season = Season.find(params[:season_id])
+    season.update_ranks(player)
+
+    ranks = player.playlist_ranks.where(season: season).highest_first.preload(:csr_tier, :playlist)
+    render json: { ranks: PlaylistRankSerializer.serialize_list(ranks), season_id: season.id }
+  end
+
   def search
     gt = params[:gamertag].gsub(/[^A-Za-z0-9 ]/, '').strip
     if gt.present?

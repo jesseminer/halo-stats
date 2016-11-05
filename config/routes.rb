@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :players, only: [:index, :show, :update] do
     get :search, on: :collection
+    put :update_ranks, on: :member
   end
   resources :playlist_ranks, only: [:index]
   resources :weapon_usages, only: [:index]
