@@ -15,8 +15,12 @@ app.SeasonSelectorView = Backbone.View.extend({
 
   changeSeason: function (e) {
     var seasonId = parseInt($(e.currentTarget).val());
-    this.$('.ranks-wrapper').text('Loading...');
-    this.model.updateRanksForSeason(seasonId).done(this.addNewRanks);
+    if (_.includes(this.model.get('completed_seasons'), seasonId.toString())) {
+      this.filterBySeason(seasonId).renderRanks();
+    } else {
+      this.$('.ranks-wrapper').text('Loading...');
+      this.model.updateRanksForSeason(seasonId).done(this.addNewRanks);
+    }
   },
 
   filterBySeason: function (seasonId) {

@@ -23,5 +23,10 @@ class Season < ActiveRecord::Base
         rank: csr_attrs['Rank']
       )
     end
+
+    if end_time.past?
+      player.completed_seasons << id
+      player.save
+    end
   end
 end
