@@ -24,7 +24,7 @@ class Season < ActiveRecord::Base
       )
     end
 
-    if end_time.past?
+    if end_time&.past? && !player.completed_seasons.include?(id.to_s)
       player.completed_seasons << id
       player.save
     end

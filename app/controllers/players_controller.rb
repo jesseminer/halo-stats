@@ -20,7 +20,11 @@ class PlayersController < ApplicationController
     season.update_ranks(player)
 
     ranks = player.playlist_ranks.where(season: season).highest_first.preload(:csr_tier, :playlist)
-    render json: { ranks: PlaylistRankSerializer.serialize_list(ranks), season_id: season.id }
+    render json: {
+      ranks: PlaylistRankSerializer.serialize_list(ranks),
+      season_completed: season.end_time&.past?,
+      season_id: season.id
+    }
   end
 
   def search

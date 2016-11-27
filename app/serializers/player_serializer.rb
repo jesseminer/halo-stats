@@ -1,8 +1,9 @@
 class PlayerSerializer < BaseSerializer
   def self.for_profile(player)
-    cols = [:completed_seasons, :emblem_url, :gamertag, :id, :slug, :spartan_image_url, :spartan_rank]
+    cols = [:emblem_url, :gamertag, :id, :slug, :spartan_image_url, :spartan_rank]
     player.as_json(only: cols).merge(
       arena_stats: serialize_service_record(player.service_records.arena.first),
+      completed_seasons: player.completed_seasons.map(&:to_i),
       warzone_stats: serialize_service_record(player.service_records.warzone.first)
     )
   end

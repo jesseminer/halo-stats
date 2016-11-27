@@ -11,11 +11,14 @@ app.SeasonSelectorView = Backbone.View.extend({
     _.remove(this.allRanks, { season_id: response.season_id });
     this.allRanks = this.allRanks.concat(response.ranks);
     this.filterBySeason(response.season_id).renderRanks();
+    if (response.season_completed) {
+      this.model.get('completed_seasons').push(response.season_id);
+    }
   },
 
   changeSeason: function (e) {
     var seasonId = parseInt($(e.currentTarget).val());
-    if (_.includes(this.model.get('completed_seasons'), seasonId.toString())) {
+    if (_.includes(this.model.get('completed_seasons'), seasonId)) {
       this.filterBySeason(seasonId).renderRanks();
     } else {
       this.$('.ranks-wrapper').text('Loading...');
