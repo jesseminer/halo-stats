@@ -18,7 +18,7 @@ class FetchPlayer
     )
 
     update_arena_svc_record(json['ArenaStats'])
-    update_playlist_ranks(json['ArenaStats']['ArenaPlaylistStats'])
+    Season.current.update_ranks(@player, json['ArenaStats']['ArenaPlaylistStats'])
     update_weapon_stats(json['ArenaStats']['WeaponStats'], :arena)
 
     warzone_json = api_client.warzone_stats['WarzoneStat']
@@ -47,13 +47,6 @@ class FetchPlayer
 
   def update_arena_svc_record(json)
     ServiceRecord.arena.find_or_initialize_by(player: @player).update!(svc_record_fields(json))
-  end
-
-  def update_playlist_ranks(json)
-    Season.current.update_ranks(@player, json)
-    Season.where('end_time > ?', @player.refreshed_at || '2015-01-01').order(start_time: :desc).limit(3).each do |s|
-      s.update_ranks(@player)
-    end
   end
 
   def update_warzone_svc_record(json)

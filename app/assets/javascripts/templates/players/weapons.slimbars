@@ -1,0 +1,9 @@
+.listing-container
+  | {{#each weapons}}
+  .listing
+    img.listing-image src="{{image_url}}"
+    div
+      .listing-title
+        | {{name}}
+      | {{kpm}} kills per minute • {{kills}} total
+  | {{/each}}

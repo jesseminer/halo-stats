@@ -1,0 +1,3 @@
+a.home-link href="/"
+  h1 HaloStats
+| {{> players/_search_form}}

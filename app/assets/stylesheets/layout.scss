@@ -9,6 +9,11 @@
     color: $white;
     margin: 0;
   }
+
+  .search-form .error {
+    display: inline-block;
+    margin-right: 10px;
+  }
 }
 
 .container {

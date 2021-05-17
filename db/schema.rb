@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160304003604) do
+ActiveRecord::Schema.define(version: 20161126020317) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,14 +27,15 @@ ActiveRecord::Schema.define(version: 20160304003604) do
   add_index "csr_tiers", ["identifier"], name: "index_csr_tiers_on_identifier", unique: true, using: :btree
 
   create_table "players", force: :cascade do |t|
-    t.string   "gamertag",          null: false
-    t.integer  "spartan_rank",      null: false
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.string   "gamertag",                       null: false
+    t.integer  "spartan_rank",                   null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.text     "spartan_image_url"
     t.text     "emblem_url"
-    t.text     "slug",              null: false
+    t.text     "slug",                           null: false
     t.datetime "refreshed_at"
+    t.text     "completed_seasons", default: [], null: false, array: true
   end
 
   add_index "players", ["gamertag"], name: "index_players_on_gamertag", unique: true, using: :btree
