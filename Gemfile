@@ -13,7 +13,7 @@ gem 'purecss-sass'
 gem 'rails_12factor', group: :production
 gem 'sass-rails'
 gem 'slim-rails'
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'
 
 group :development, :test do
   gem 'dotenv-rails'

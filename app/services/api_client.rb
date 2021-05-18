@@ -1,3 +1,5 @@
+require 'net/http'
+
 class ApiClient
   def initialize(gamertag)
     @gamertag = gamertag
