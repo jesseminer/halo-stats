@@ -5,7 +5,7 @@ class PlayersController < ApplicationController
 
   def show
     respond_to do |format|
-      format.html { render text: '', layout: 'application' }
+      format.html { render 'landing/show' }
       format.json { render json: PlayerSerializer.for_profile(Player.find(params[:id])) }
     end
   end
