@@ -10,7 +10,6 @@ gem 'lodash-rails'
 gem 'pg'
 gem 'puma'
 gem 'purecss-sass'
-gem 'rails_12factor', group: :production
 gem 'sass-rails'
 gem 'slim-rails'
 gem 'uglifier'
