@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '3.0.4'
 
-gem 'rails', '6.1.3.2'
+gem 'rails', '~> 6.1.0'
 gem 'autoprefixer-rails'
 gem 'backbone-rails'
 gem 'handlebars_assets'
