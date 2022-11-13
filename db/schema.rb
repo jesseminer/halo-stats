@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2016_11_26_020317) do
+ActiveRecord::Schema.define(version: 2022_11_13_202547) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "albums", force: :cascade do |t|
+    t.text "title", null: false
+    t.bigint "artist_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["artist_id"], name: "index_albums_on_artist_id"
+  end
+
+  create_table "artists", force: :cascade do |t|
+    t.text "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "csr_tiers", id: :serial, force: :cascade do |t|
     t.string "identifier", null: false
@@ -90,6 +104,18 @@ ActiveRecord::Schema.define(version: 2016_11_26_020317) do
     t.index ["player_id"], name: "index_service_records_on_player_id"
   end
 
+  create_table "songs", force: :cascade do |t|
+    t.text "title", null: false
+    t.text "file_id"
+    t.integer "duration", null: false
+    t.bigint "artist_id"
+    t.bigint "album_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["album_id"], name: "index_songs_on_album_id"
+    t.index ["artist_id"], name: "index_songs_on_artist_id"
+  end
+
   create_table "weapon_usages", id: :serial, force: :cascade do |t|
     t.integer "player_id", null: false
     t.integer "weapon_id", null: false
@@ -121,11 +147,14 @@ ActiveRecord::Schema.define(version: 2016_11_26_020317) do
     t.index ["uid"], name: "index_weapons_on_uid", unique: true
   end
 
+  add_foreign_key "albums", "artists"
   add_foreign_key "playlist_ranks", "csr_tiers", name: "fk_playlist_ranks_csr_tier_id"
   add_foreign_key "playlist_ranks", "players", name: "fk_playlist_ranks_player_id"
   add_foreign_key "playlist_ranks", "playlists", name: "fk_playlist_ranks_playlist_id"
   add_foreign_key "playlist_ranks", "seasons", name: "fk_playlist_ranks_season_id"
   add_foreign_key "service_records", "players", name: "fk_service_records_player_id"
+  add_foreign_key "songs", "albums"
+  add_foreign_key "songs", "artists"
   add_foreign_key "weapon_usages", "players", name: "fk_weapon_usages_player_id"
   add_foreign_key "weapon_usages", "weapons", name: "fk_weapon_usages_weapon_id"
 end
