@@ -1,4 +1,4 @@
-class CreateWeapons < ActiveRecord::Migration
+class CreateWeapons < ActiveRecord::Migration[4.2]
   def change
     create_table :weapons do |t|
       t.string :uid, null: false

@@ -1,4 +1,4 @@
-class CreateCsrTiers < ActiveRecord::Migration
+class CreateCsrTiers < ActiveRecord::Migration[4.2]
   def change
     create_table :csr_tiers do |t|
       t.string :identifier, null: false

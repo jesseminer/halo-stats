@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 2016_11_26_020317) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "csr_tiers", force: :cascade do |t|
+  create_table "csr_tiers", id: :serial, force: :cascade do |t|
     t.string "identifier", null: false
     t.string "name"
     t.text "image_url"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2016_11_26_020317) do
     t.index ["identifier"], name: "index_csr_tiers_on_identifier", unique: true
   end
 
-  create_table "players", force: :cascade do |t|
+  create_table "players", id: :serial, force: :cascade do |t|
     t.string "gamertag", null: false
     t.integer "spartan_rank", null: false
     t.datetime "created_at", null: false
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2016_11_26_020317) do
     t.index ["slug"], name: "index_players_on_slug", unique: true
   end
 
-  create_table "playlist_ranks", force: :cascade do |t|
+  create_table "playlist_ranks", id: :serial, force: :cascade do |t|
     t.integer "player_id", null: false
     t.integer "season_id", null: false
     t.integer "playlist_id", null: false
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2016_11_26_020317) do
     t.index ["season_id"], name: "index_playlist_ranks_on_season_id"
   end
 
-  create_table "playlists", force: :cascade do |t|
+  create_table "playlists", id: :serial, force: :cascade do |t|
     t.string "uid", null: false
     t.string "name", null: false
     t.text "description"
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 2016_11_26_020317) do
     t.index ["uid"], name: "index_playlists_on_uid", unique: true
   end
 
-  create_table "seasons", force: :cascade do |t|
+  create_table "seasons", id: :serial, force: :cascade do |t|
     t.string "uid", null: false
     t.string "name", null: false
     t.datetime "start_time"
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 2016_11_26_020317) do
     t.index ["uid"], name: "index_seasons_on_uid", unique: true
   end
 
-  create_table "service_records", force: :cascade do |t|
+  create_table "service_records", id: :serial, force: :cascade do |t|
     t.integer "player_id", null: false
     t.integer "game_mode", default: 0, null: false
     t.integer "kills", null: false
@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 2016_11_26_020317) do
     t.index ["player_id"], name: "index_service_records_on_player_id"
   end
 
-  create_table "weapon_usages", force: :cascade do |t|
+  create_table "weapon_usages", id: :serial, force: :cascade do |t|
     t.integer "player_id", null: false
     t.integer "weapon_id", null: false
     t.integer "kills", default: 0, null: false
@@ -109,7 +109,7 @@ ActiveRecord::Schema.define(version: 2016_11_26_020317) do
     t.index ["weapon_id"], name: "index_weapon_usages_on_weapon_id"
   end
 
-  create_table "weapons", force: :cascade do |t|
+  create_table "weapons", id: :serial, force: :cascade do |t|
     t.string "uid", null: false
     t.string "name", null: false
     t.string "weapon_type", null: false
