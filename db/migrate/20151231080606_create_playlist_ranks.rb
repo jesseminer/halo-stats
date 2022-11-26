@@ -1,4 +1,4 @@
-class CreatePlaylistRanks < ActiveRecord::Migration
+class CreatePlaylistRanks < ActiveRecord::Migration[4.2]
   def change
     create_table :playlist_ranks do |t|
       t.references :player, null: false, index: true, foreign_key: { name: 'fk_playlist_ranks_player_id' }

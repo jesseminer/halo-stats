@@ -1,4 +1,4 @@
-class CreateWeaponUsages < ActiveRecord::Migration
+class CreateWeaponUsages < ActiveRecord::Migration[4.2]
   def change
     integer_cols = %i[kills headshots damage_dealt shots_fired shots_hit time_used]
     create_table :weapon_usages do |t|

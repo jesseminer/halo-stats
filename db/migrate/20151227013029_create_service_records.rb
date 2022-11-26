@@ -1,4 +1,4 @@
-class CreateServiceRecords < ActiveRecord::Migration
+class CreateServiceRecords < ActiveRecord::Migration[4.2]
   def change
     create_table :service_records do |t|
       t.references :player, null: false, index: true, foreign_key: { name: 'fk_service_records_player_id' }

@@ -1,4 +1,4 @@
-class AddGameModeToWeaponUsages < ActiveRecord::Migration
+class AddGameModeToWeaponUsages < ActiveRecord::Migration[4.2]
   def change
     add_column :weapon_usages, :game_mode, :integer, null: false, default: 0
     reversible do |dir|
