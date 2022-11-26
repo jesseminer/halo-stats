@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_13_202547) do
+ActiveRecord::Schema.define(version: 2022_11_26_054521) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,18 @@ ActiveRecord::Schema.define(version: 2022_11_13_202547) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["identifier"], name: "index_csr_tiers_on_identifier", unique: true
+  end
+
+  create_table "movies", force: :cascade do |t|
+    t.text "title", null: false
+    t.integer "release_year", null: false
+    t.text "review"
+    t.date "date_watched"
+    t.integer "rating"
+    t.text "image"
+    t.integer "length"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "players", id: :serial, force: :cascade do |t|
